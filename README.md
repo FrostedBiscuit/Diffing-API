@@ -49,5 +49,8 @@ If the request ID is valid, then it will return the results in the following for
 For any other result, the response will only contain the `diffResultType` field.
 
 ## REQUIREMENTS:
-* Visual Studio 2017
+* Visual Studio 2017 (and ASP.NET and web development package along with NUnit 3 test adapter extension for running unit tests)
 * (optional) DB Browser for SQLite
+
+## TROUBLESHOOTING
+If you do not immediately get the option to run the project with IIS Express, go to solution properties and set the Startup Project to DiffingAPI instead of DiffingAPI.Tests.

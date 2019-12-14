@@ -32,7 +32,7 @@ namespace DiffingAPI.DiffLogic {
 
             int diffIndex = diffs.FindIndex(d => d.ID == id);
 
-            if (diffIndex == -1) {
+            if (diffIndex > -1) {
 
                 diffs[diffIndex].Left = value;
 
@@ -58,7 +58,7 @@ namespace DiffingAPI.DiffLogic {
 
             int diffIndex = diffs.FindIndex(d => d.ID == id);
 
-            if (diffIndex == -1) {
+            if (diffIndex > -1) {
 
                 diffs[diffIndex].Right = value;
 
