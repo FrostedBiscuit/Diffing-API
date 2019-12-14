@@ -9,8 +9,8 @@ This is a C# API built with ASP.NET. It also contains an SQLite database for per
 # HOW IT WORKS
 
 The API consists of 3 endpoints. The `PUT` endpoints expect JSON data in the format:
-```json
-{ "data": *your Base64 encoded data* }
+```
+{ "data": "your Base64 encoded data" }
 ```
 `PUT: /v1/diff/{id}/left`
 
@@ -27,13 +27,13 @@ If a comparison has not been created at the specified ID,
 it responds with code **404**.
 
 If the request ID is valid, then it will return the results in the following format:
-```json
+```
 {
-    "diffResultType": *type of diff*,
+    "diffResultType": "type of diff",
     "diffs": [
         {
-            "Offset": ...,
-            "Length": ...
+            "Offset": "...",
+            "Length": "..."
         },
         ...
     ]
