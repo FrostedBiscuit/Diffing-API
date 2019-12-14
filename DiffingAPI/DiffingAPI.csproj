@@ -201,7 +201,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\diffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DiffLogic\DiffDB.cs" />
     <Compile Include="DiffLogic\DiffManager.cs" />
     <Compile Include="Global.asax.cs">
