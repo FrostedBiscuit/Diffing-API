@@ -7,9 +7,20 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace DiffingAPI.DiffLogic {
+
     public static class DiffManager {
 
-        private static List<DiffEntry> diffs = new List<DiffEntry>();
+        private static List<DiffEntry> diffs;
+
+        public static void Init() {
+
+            diffs = DiffDB.LoadDiffEntries();
+        }
+
+        public static void test_Init(List<DiffEntry> testDiffs) {
+
+            diffs = testDiffs;
+        }
 
         /// <summary>
         /// This function will either assign the left value of the diff entry if it
@@ -19,18 +30,22 @@ namespace DiffingAPI.DiffLogic {
         /// <param name="value">New left value</param>
         public static void AddLeftValue(int id, string value) {
 
-            DiffEntry diff = diffs.Find(d => d.ID == id);
+            int diffIndex = diffs.FindIndex(d => d.ID == id);
 
-            if (diff != null) {
-
-                int diffIndex = diffs.FindIndex(d => d == diff);
+            if (diffIndex == -1) {
 
                 diffs[diffIndex].Left = value;
+
+                DiffDB.SaveEntry(diffs[diffIndex]);
 
                 return;
             }
 
-            diffs.Add(new DiffEntry(id, left: value));
+            DiffEntry newDiff = new DiffEntry(id, value, "");
+
+            DiffDB.SaveEntry(newDiff);
+
+            diffs.Add(newDiff);
         }
 
         /// <summary>
@@ -41,18 +56,22 @@ namespace DiffingAPI.DiffLogic {
         /// <param name="value">New right value</param>
         public static void AddRightValue(int id, string value) {
 
-            DiffEntry diff = diffs.Find(d => d.ID == id);
+            int diffIndex = diffs.FindIndex(d => d.ID == id);
 
-            if (diff != null) {
-
-                int diffIndex = diffs.FindIndex(d => d == diff);
+            if (diffIndex == -1) {
 
                 diffs[diffIndex].Right = value;
+
+                DiffDB.SaveEntry(diffs[diffIndex]);
 
                 return;
             }
 
-            diffs.Add(new DiffEntry(id, right: value));
+            DiffEntry newDiff = new DiffEntry(id, "", value);
+
+            DiffDB.SaveEntry(newDiff);
+
+            diffs.Add(newDiff);
         }
 
         /// <summary>
@@ -111,26 +130,23 @@ namespace DiffingAPI.DiffLogic {
                     // Values are the same, check if we have a diff record.
                     // If so, add it to list and get rid of it.
                     if (currentDiff != null) {
-
+                        
                         diffs.Add(currentDiff);
 
                         currentDiff = null;
                     }
-
-                    continue;
                 }
-
-                if (leftVal[i] != rightVal[i]) {
+                else {
 
                     // Values are different, first check if we already have a diff record.
                     // If so, increase lenght of diff, if not create a new one.
                     if (currentDiff == null) {
 
-                        currentDiff = new DiffResult.Diff { Offset = i, Lenght = 1 };
+                        currentDiff = new DiffResult.Diff { Offset = i, Length = 1 };
                     }
                     else {
 
-                        currentDiff.Lenght++;
+                        currentDiff.Length++;
                     }
                 }
             }
@@ -155,17 +171,17 @@ namespace DiffingAPI.DiffLogic {
 
     public class DiffEntry {
 
-        public int ID;
+        public int ID { get; set; }
 
-        public string Left;
-        public string Right;
+        public string Left { get; set; }
+        public string Right { get; set; }
 
-        public DiffEntry(int id, string left = "", string right = "") {
+        public DiffEntry(long ID, string Left, string Right) {
 
-            ID = id;
+            this.ID = (int)ID;
 
-            Left = left;
-            Right = right;
+            this.Left = Left;
+            this.Right = Right;
         }
     }
 
@@ -189,7 +205,7 @@ namespace DiffingAPI.DiffLogic {
         public class Diff {
 
             public int Offset;
-            public int Lenght;
+            public int Length;
         }
     }
 }

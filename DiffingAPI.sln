@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffingAPI", "DiffingAPI\DiffingAPI.csproj", "{3791BE80-BE47-4C13-8856-34EA44D9E6E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffingAPI.Tests", "DiffingAPI.Tests\DiffingAPI.Tests.csproj", "{148B8366-8B33-4170-90A9-F91D9B5E2D75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3791BE80-BE47-4C13-8856-34EA44D9E6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3791BE80-BE47-4C13-8856-34EA44D9E6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3791BE80-BE47-4C13-8856-34EA44D9E6E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148B8366-8B33-4170-90A9-F91D9B5E2D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148B8366-8B33-4170-90A9-F91D9B5E2D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148B8366-8B33-4170-90A9-F91D9B5E2D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148B8366-8B33-4170-90A9-F91D9B5E2D75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
